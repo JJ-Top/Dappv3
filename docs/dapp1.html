@@ -3,44 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="./web3.min.js"></script>
+      <script type="text/javascript" src="./web3.min.js"></script>  
+     <!-- <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>  -->
     <script type="text/javascript">
+
+
+
+
+
+
+        console.log('***Inicio');
         window.addEventListener('load', function () {
+            console.log('***load');        
             if (typeof web3 !== 'undefined') {
-                console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+                console.log('***Web3 Detected! ' + web3.currentProvider.constructor.name)
                 window.web3 = new Web3(web3.currentProvider);
+                
             } else {
-                console.log('No Web3 Detected... using HTTP Provider')
+                console.log('***No Web3 Detected... using HTTP Provider')
                 window.web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/<APIKEY>"));
             }
+            console.log('***fin load');
         })
+
+
+
         function getBalance() {
+            console.log('***Inicio GBxxx');
+
+
+            window.ethereum.enable();
+            var accounts = web3.eth.getAccounts((error,result) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(result);
+        }       
+    });    
+    //web3.eth.getAccounts().then(console.log);
+
+
+
+            //web3 = new Web3(window.ethereum);
+            //const accounts2 = web3.eth.getAccounts();  
+            //console.log(accounts2);
+            //web3.eth.getAccounts().then(console.log);
+
+
             var address, wei, balance
             address = document.getElementById("address").value
+            
             try {
                 web3.eth.getBalance(address, function (error, wei) {
                     if (!error) {
                         var balance = web3.fromWei(wei, 'ether');
-                        document.getElementById("output").innerHTML = balance + " ETH";
-                        console.log(balance);
+                        document.getElementById("output").innerHTML = balance + " ETH.";
+                        //console.log('***balance');
+                        //console.log(balance);
+                        //console.log(web3.fromWei(wei, 'ether'));
+                        //web3.eth.getAccounts(console.log);
+                        //const accounts2 = web3.eth.getAccounts();  
+                        //console.log(accounts2);                        
                     }
                 });
             } catch (err) {
                 document.getElementById("output").innerHTML = err;
             }
+            console.log('***Fin GB');
         }
+        console.log('***Fin');
     </script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-<title>Proyecto de Dapp Jairo Lamus, Versión 1 </title>
+<title>Proyectoz de Dapp Jairo Lamus, Versión 1 </title>
 
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-    <p class="text-light bg-secondary">Dapp Project, Jairo Lamus, Versión 1 </p>
+    <p class="text-light bg-secondary">Dapp Project, Jairo Lamus, Versión 1. </p>
     <p></p>
+    <a href="index.html" class="btn btn-secondary " tabindex="-1" role="button" aria-disabled="true">Home Page</a>
     <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
     <h1 center class="text-warning"> Inquiry ETH Balance dapp1</h1>
     <h3 class="text-warning">Consulta Balance de ETH</h3>
@@ -61,7 +105,7 @@
 
     <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
     <!-- <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Primary link</a> -->
-    <a href="index.html" class="btn btn-secondary " tabindex="-1" role="button" aria-disabled="true">Home Page</a>
+    
     
 
     

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="./web3.min.js"></script>  
+    <script type="text/javascript">
+
+
+
+
+
+
+    console.log('***Inicio');
+    window.addEventListener('load', function () {
+        console.log('***load');        
+        if (typeof web3 !== 'undefined') {
+            console.log('***Web3 Detected! ' + web3.currentProvider.constructor.name)
+            window.web3 = new Web3(web3.currentProvider);
+                    
+        } else {
+            console.log('***No Web3 Detected... using HTTP Provider')
+            window.web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/<APIKEY>"));
+        }
+        console.log('***fin load');
+    })
+
+
+
+    function functionConnect() {
+        console.log('***Inicio funcion connect');
+        window.ethereum.enable();
+        var accounts = web3.eth.getAccounts((error,result) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("***Cuenta conectada: " + result);
+            alert("Cuenta Conectada: " + result);            
+            document.getElementById("output").innerHTML = "Cuenta Conectada: " + result;
+
+        }       
+        }); 
+
+
+        //var address, wei, balance
+        //address = document.getElementById("address").value
+            
+        //try {
+        //    web3.eth.getBalance(address, function (error, wei) {
+        //    if (!error) {
+        //        var balance = web3.fromWei(wei, 'ether');
+        //        document.getElementById("output").innerHTML = balance + " ETH.";
+        //    }
+        //    });
+        //} catch (err) {
+        //document.getElementById("output").innerHTML = err;
+        //}
+        
+        console.log('***Fin GB');
+
+
+    }
+    console.log('***Fin');
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+<title>Proyectoz de Dapp Jairo Lamus, Versión 1 </title>
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <p class="text-light bg-secondary">Dapp Project, Jairo Lamus, Versión 1. </p>
+    <p></p>
+    <a href="index.html" class="btn btn-secondary " tabindex="-1" role="button" aria-disabled="true">Home Page</a>
+    <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+    <h1 center class="text-warning"> Connect to your MetaMask</h1>
+    <h3 class="text-warning">Conectese a tu MetaMask</h3>
+    <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <!-- <h5 class="text-dark">Please connect to your MetaMask and enter a valid ETH adress :</h5>
+    <h6 class="text-dark">Por favor conecte su MetaMask e Introduzca la Adrress de Ethereum :</h6> -->
+    
+    <!-- <input type="text" size="50" id="address" /> -->
+    <button type="button" onClick="functionConnect();"   class="btn btn-primary btn-lg">Connect...</button>
+    <div id="output" class="text-success h1 " >      </div>
+
+    <br />
+    <br />
+    <div id="output" class="text-success h1 " >      </div>
+
+    <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+    <!-- <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Primary link</a> -->
+    
+    
+
+    
+    
+</body>
+</html>
